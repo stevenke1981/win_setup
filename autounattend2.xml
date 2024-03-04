@@ -4,9 +4,9 @@
         <component name="Microsoft-Windows-Setup" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" processorArchitecture="amd64">
             <UserData>
                 <AcceptEula>true</AcceptEula>
-				<ProductKey>
-					<Key></Key>
-				</ProductKey>
+                <ProductKey>
+                    <Key></Key>
+                </ProductKey>
             </UserData>
             <DiskConfiguration>
                 <Disk wcm:action="add">
@@ -35,7 +35,7 @@
                         <CreatePartition wcm:action="add">
                             <Order>4</Order>
                             <Type>Primary</Type>
-                            <Size>1024</Size>
+                            <Size>800</Size>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
@@ -48,18 +48,22 @@
                         </ModifyPartition>
                         <!-- Windows partition -->
                         <ModifyPartition wcm:action="add">
-                            <Order>2</Order>
+                            <Order>3</Order>
                             <PartitionID>3</PartitionID>
                             <Label>Windows</Label>
                             <Format>NTFS</Format>
                         </ModifyPartition>
                         <!-- Recovery partition -->
                         <ModifyPartition wcm:action="add">
-                            <Order>3</Order>
+                            <Order>4</Order>
                             <PartitionID>4</PartitionID>
                             <Label>Recovery</Label>
                             <Format>NTFS</Format>
                             <TypeID>de94bba4-06d1-4d40-a16a-bfd50179d6ac</TypeID>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Order>2</Order>
+                            <Label>MSR</Label>
                         </ModifyPartition>
                     </ModifyPartitions>
                 </Disk>
@@ -107,32 +111,30 @@
                 <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
                 <HideLocalAccountScreen>true</HideLocalAccountScreen>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-                <NetworkLocation>Home</NetworkLocation>
+                <NetworkLocation>Work</NetworkLocation>
                 <SkipUserOOBE>true</SkipUserOOBE>
                 <SkipMachineOOBE>true</SkipMachineOOBE>
                 <ProtectYourPC>1</ProtectYourPC>
-				
-				<FirstLogonCommands>
-            <SynchronousCommand wcm:action="add">
-                <Order>1</Order>
-                <Description>Install Chipset Driver</Description>
-                <CommandLine>C:\driver\installChipsetDriver.cmd</CommandLine>
-                <RequiresUserInput>false</RequiresUserInput>
-            </SynchronousCommand>
-            <!-- Any additional commands here -->
-        </FirstLogonCommands>
-				
+                <FirstLogonCommands>
+                    <SynchronousCommand wcm:action="add">
+                        <Order>1</Order>
+                        <Description>Install Chipset Driver</Description>
+                        <CommandLine>C:\driver\installChipsetDriver.cmd</CommandLine>
+                        <RequiresUserInput>false</RequiresUserInput>
+                    </SynchronousCommand>
+                    <!-- Any additional commands here -->
+                </FirstLogonCommands>
             </OOBE>
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>password</Value>
-                    <PlainText>true</PlainText>
+                    <Value>YwBvADAANAA3ADcAOAA3ADQANAAxAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                    <PlainText>false</PlainText>
                 </AdministratorPassword>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
                         <Password>
-                            <Value>password</Value>
-                            <PlainText>true</PlainText>
+                            <Value>YwBvADAANAA3ADcAOAA3ADQANAAxAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+                            <PlainText>false</PlainText>
                         </Password>
                         <Description>Steven account</Description>
                         <DisplayName>Steven</DisplayName>
@@ -143,8 +145,8 @@
             </UserAccounts>
             <AutoLogon>
                 <Password>
-                    <Value>password</Value>
-                    <PlainText>true</PlainText>
+                    <Value>YwBvADAANAA3ADcAOAA3ADQANAAxAFAAYQBzAHMAdwBvAHIAZAA=</Value>
+                    <PlainText>false</PlainText>
                 </Password>
                 <Username>steven</Username>
                 <Enabled>true</Enabled>
@@ -153,4 +155,5 @@
             <TimeZone>China Standard Time</TimeZone>
         </component>
     </settings>
+    <cpi:offlineImage cpi:source="wim:c:/esd/install.wim#Windows 10 Pro" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>
