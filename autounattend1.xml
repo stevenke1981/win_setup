@@ -108,7 +108,7 @@
 				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
 				<HideLocalAccountScreen>true</HideLocalAccountScreen>
 				<HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-				<NetworkLocation>Home</NetworkLocation>
+				<NetworkLocation>WORK</NetworkLocation>
 				<SkipUserOOBE>true</SkipUserOOBE>
 				<SkipMachineOOBE>true</SkipMachineOOBE>
 				<ProtectYourPC>1</ProtectYourPC>
