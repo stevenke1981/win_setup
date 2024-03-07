@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="windowsPE">
+        <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <SetupUILanguage>
+                <UILanguage>zh-TW</UILanguage>
+            </SetupUILanguage>
+            <InputLocale>zh-TW</InputLocale>
+            <SystemLocale>zh-TW</SystemLocale>
+            <UILanguage>zh-TW</UILanguage>
+        </component>
+        <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserData>
+                <ProductKey>
+                    <Key></Key>
+                </ProductKey>
+                <AcceptEula>true</AcceptEula>
+            </UserData>
+            <DiskConfiguration>
+                <Disk wcm:action="add">
+                    <DiskID>0</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
+                    <CreatePartitions>
+                        <!-- Windows RE Tools partition -->
+                        <!-- System partition (ESP) -->
+                        <CreatePartition wcm:action="add">
+                            <Order>1</Order>
+                            <Type>EFI</Type>
+                            <Size>100</Size>
+                        </CreatePartition>
+                        <!-- Microsoft reserved partition (MSR) -->
+                        <CreatePartition wcm:action="add">
+                            <Order>2</Order>
+                            <Type>Primary</Type>
+                            <Size>800</Size>
+                        </CreatePartition>
+                        <!-- Windows partition -->
+                        <CreatePartition wcm:action="add">
+                            <Order>3</Order>
+                            <Type>Primary</Type>
+                            <Extend>true</Extend>
+                        </CreatePartition>
+                    </CreatePartitions>
+                    <ModifyPartitions>
+                        <!-- Windows RE Tools partition -->
+                        <!-- System partition (ESP) -->
+                        <ModifyPartition wcm:action="add">
+                            <Order>1</Order>
+                            <PartitionID>1</PartitionID>
+                            <Label>ESP</Label>
+                            <Format>FAT32</Format>
+                        </ModifyPartition>
+                        <!-- MSR partition does not need to be modified -->
+                        <!-- Windows partition -->
+                        <ModifyPartition wcm:action="add">
+                            <Order>3</Order>
+                            <PartitionID>3</PartitionID>
+                            <Label>Windows</Label>
+                            <Letter>C</Letter>
+                            <Format>NTFS</Format>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Format>NTFS</Format>
+                            <Label>Recovery</Label>
+                            <Order>2</Order>
+                            <PartitionID>2</PartitionID>
+                            <TypeID>de94bba4-06d1-4d40-a16a-bfd50179d6ac</TypeID>
+                        </ModifyPartition>
+                    </ModifyPartitions>
+                </Disk>
+                <WillShowUI>OnError</WillShowUI>
+            </DiskConfiguration>
+            <ImageInstall>
+                <OSImage>
+                    <InstallFrom>
+                        <MetaData wcm:action="add">
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows 10 Pro</Value>
+                        </MetaData>
+                    </InstallFrom>
+                    <InstallTo>
+                        <DiskID>0</DiskID>
+                        <PartitionID>3</PartitionID>
+                    </InstallTo>
+                </OSImage>
+            </ImageInstall>
+        </component>
+    </settings>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>zh-TW</InputLocale>
+            <SystemLocale>zh-TW</SystemLocale>
+            <UILanguage>zh-TW</UILanguage>
+            <UserLocale>zh-TW</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserAccounts>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>MAA0ADcANwA2ADEAOAAxADYAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <Description>Administrative User</Description>
+                        <DisplayName>steven</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>steven</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+            <OOBE>
+                <ProtectYourPC>3</ProtectYourPC>
+                <HideEULAPage>true</HideEULAPage>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <NetworkLocation>Home</NetworkLocation>
+            </OOBE>
+            <AutoLogon>
+                <Password>
+                    <Value>MAA0ADcANwA2ADEAOAAxADYAUABhAHMAcwB3AG8AcgBkAA==</Value>
+                    <PlainText>false</PlainText>
+                </Password>
+                <Enabled>true</Enabled>
+                <Username>steven</Username>
+            </AutoLogon>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-TerminalServices-LocalSessionManager" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <fDenyTSConnections>false</fDenyTSConnections>
+        </component>
+        <component name="Microsoft-Windows-TerminalServices-RDP-WinStationExtensions" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <UserAuthentication>0</UserAuthentication>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim:c:/esd/install.wim#Windows 10 Pro" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
